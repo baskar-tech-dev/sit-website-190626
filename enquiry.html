@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enquiry - Vibe Clothing Company</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="/asset/logo-black.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <style>
+    .enquiry-hero {
+      background-image: linear-gradient(180deg, rgba(7, 11, 8, 0.7) 0%, rgba(13, 21, 17, 0.85) 100%), url('asset/hero-2.png');
+    }
+
+    .enquiry-section {
+      min-height: auto;
+      padding: clamp(60px, 10vh, 100px) clamp(16px, 5vw, 20px);
+      background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .enquiry-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .enquiry-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .enquiry-header .section-tag {
+      color: #7CB342;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .enquiry-header h1 {
+      font-size: clamp(28px, 8vw, 48px);
+      font-weight: 700;
+      color: #F5F5F5;
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .enquiry-header h1 em {
+      font-style: italic;
+      color: #7CB342;
+    }
+
+    .enquiry-header p {
+      color: rgba(245, 245, 245, 0.7);
+      font-size: clamp(14px, 2vw, 16px);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .form-wrapper {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(124, 179, 66, 0.2);
+      border-radius: 16px;
+      padding: clamp(20px, 4vw, 40px);
+      backdrop-filter: blur(10px);
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group.inline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      color: #F5F5F5;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .form-group label .required {
+      color: #7CB342;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: clamp(10px, 1.5vw, 12px) clamp(12px, 2vw, 15px);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(124, 179, 66, 0.3);
+      border-radius: 8px;
+      color: #F5F5F5;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(13px, 2vw, 14px);
+      transition: all 0.3s ease;
+      min-height: 44px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(245, 245, 245, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #7CB342;
+      box-shadow: 0 0 0 2px rgba(124, 179, 66, 0.1);
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%237CB342' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 35px;
+    }
+
+    .form-group select option {
+      background: var(--bg-dark);
+      color: #F5F5F5;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+      width: auto;
+      cursor: pointer;
+      accent-color: #7CB342;
+    }
+
+    .checkbox-item label {
+      margin: 0;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .form-info {
+      background: rgba(124, 179, 66, 0.1);
+      border-left: 3px solid #7CB342;
+      padding: clamp(12px, 2vw, 15px);
+      border-radius: 8px;
+      margin-bottom: 25px;
+    }
+
+    .form-info p {
+      color: rgba(245, 245, 245, 0.8);
+      font-size: clamp(12px, 1.5vw, 13px);
+      margin: 0;
+    }
+
+    .form-btns {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .btn-submit {
+      padding: clamp(12px, 1.5vw, 14px) clamp(35px, 5vw, 50px);
+      background: #7CB342;
+      color: var(--bg-main);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      min-height: 44px;
+    }
+
+    .btn-submit:hover {
+      background: #5a8a2d;
+      transform: translateY(-2px);
+    }
+
+    .btn-reset {
+      padding: clamp(12px, 1.5vw, 14px) clamp(35px, 5vw, 50px);
+      background: transparent;
+      color: #7CB342;
+      border: 1px solid #7CB342;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 13px;
+      min-height: 44px;
+    }
+
+    .btn-reset:hover {
+      background: rgba(124, 179, 66, 0.1);
+    }
+
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 60px;
+    }
+
+    .contact-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(124, 179, 66, 0.2);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .contact-icon {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .contact-card h3 {
+      color: #F5F5F5;
+      font-size: 16px;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .contact-card p {
+      color: rgba(245, 245, 245, 0.7);
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .contact-card a {
+      color: #7CB342;
+      text-decoration: none;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .form-group.inline {
+        grid-template-columns: 1fr;
+      }
+
+      .enquiry-header h1 {
+        font-size: clamp(24px, 6vw, 36px);
+      }
+
+      .form-wrapper {
+        padding: clamp(15px, 3vw, 25px);
+      }
+
+      .form-btns {
+        flex-direction: column;
+      }
+      
+      .btn-submit,
+      .btn-reset {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .enquiry-section {
+        padding: clamp(20px, 5vh, 40px) clamp(12px, 4vw, 16px);
+      }
+      
+      .enquiry-header {
+        margin-bottom: clamp(20px, 4vh, 40px);
+      }
+      
+      .contact-info {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- ENQUIRY HERO SECTION -->
+  <section class="enquiry-hero">
+    <div class="enquiry-hero-content">
+      <span class="section-tag">GET IN TOUCH</span>
+      <h1>Send us an <br><em>Enquiry</em></h1>
+      <p>Have a project in mind? Fill out the form below and our team will get back to you with a detailed proposal and timeline.</p>
+    </div>
+  </section>
+
+  <!-- ENQUIRY SECTION -->
+  <section class="enquiry-section">
+    <div class="enquiry-container">
+
+      <!-- ENQUIRY FORM -->
+      <div class="form-wrapper" id="enquiry-form">
+        <div class="form-info">
+          <p>✓ We respond to all inquiries within 24-48 hours | ✓ Free consultation available | ✓ Flexible terms for all project sizes</p>
+        </div>
+
+        <form id="enquiryForm">
+          <!-- Personal Information -->
+          <div class="form-group inline">
+            <div>
+              <label for="firstName">First Name <span class="required">*</span></label>
+              <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+            </div>
+            <div>
+              <label for="lastName">Last Name <span class="required">*</span></label>
+              <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+            </div>
+          </div>
+
+          <div class="form-group inline">
+            <div>
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div>
+              <label for="phone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company Name <span class="required">*</span></label>
+            <input type="text" id="company" name="company" placeholder="Your company name" required>
+          </div>
+
+          <!-- Project Details -->
+          <div class="form-group">
+            <label for="projectType">Type of Service Interested In <span class="required">*</span></label>
+            <select id="projectType" name="projectType" required>
+              <option value="">-- Select an option --</option>
+              <option value="custom-apparel">Custom Apparel Production</option>
+              <option value="textile-manufacturing">Textile Manufacturing</option>
+              <option value="private-label">Private Label Services</option>
+              <option value="design-solutions">Innovative Design Solutions</option>
+              <option value="bulk-order">Bulk Order</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantity">Estimated Order Quantity <span class="required">*</span></label>
+            <input type="text" id="quantity" name="quantity" placeholder="e.g., 1000 units, Custom, TBD" required>
+          </div>
+
+          <div class="form-group">
+            <label for="timeline">Required Timeline <span class="required">*</span></label>
+            <select id="timeline" name="timeline" required>
+              <option value="">-- Select timeline --</option>
+              <option value="urgent">Urgent (Less than 2 weeks)</option>
+              <option value="short">Short (2-4 weeks)</option>
+              <option value="medium">Medium (1-2 months)</option>
+              <option value="flexible">Flexible (3+ months)</option>
+            </select>
+          </div>
+
+          <!-- Product Details -->
+          <div class="form-group">
+            <label for="productDetails">Product Details & Requirements <span class="required">*</span></label>
+            <textarea id="productDetails" name="productDetails" placeholder="Describe your project, materials, colors, sizes, designs, and any special requirements..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Interested Services <span class="required">*</span></label>
+            <div class="checkbox-group">
+              <div class="checkbox-item">
+                <input type="checkbox" id="service1" name="services" value="custom-production">
+                <label for="service1">Custom Apparel Production</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="service2" name="services" value="quality-assurance">
+                <label for="service2">Quality Assurance & Testing</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="service3" name="services" value="design">
+                <label for="service3">Design & Consultation</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="service4" name="services" value="sustainable">
+                <label for="service4">Sustainable/Eco-friendly Options</label>
+              </div>
+              <div class="checkbox-item">
+                <input type="checkbox" id="service5" name="services" value="logistics">
+                <label for="service5">Shipping & Logistics Support</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Additional Information -->
+          <div class="form-group">
+            <label for="additionalInfo">Additional Information</label>
+            <textarea id="additionalInfo" name="additionalInfo" placeholder="Any additional details you'd like us to know..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox-item">
+              <input type="checkbox" id="agreement" name="agreement" required>
+              <label for="agreement">I agree to the <a href="privacy-policy.html" target="_blank" style="color: #7CB342;">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" style="color: #7CB342;">Terms of Service</a></label>
+            </div>
+          </div>
+
+          <div class="form-btns">
+            <button type="submit" class="btn-submit">Submit Enquiry</button>
+            <button type="reset" class="btn-reset">Clear Form</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="contact-info">
+        <div class="contact-card">
+          <div class="contact-icon">✉️</div>
+          <h3>Email</h3>
+          <p><a href="mailto:enquiry@vibeclothingcompany.net">enquiry@vibeclothingcompany.net</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">📞</div>
+          <h3>Phone</h3>
+          <p>IN: <a href="tel:+919791999998">+91 97919 99998</a><br>UK: <a href="tel:+447404447806">+44 7404447806</a></p>
+        </div>
+        <div class="contact-card">
+          <div class="contact-icon">🕐</div>
+          <h3>Response Time</h3>
+          <p>We typically respond within 24-48 hours during business days</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer">
+  <div class="footer-top-line"></div>
+  <div class="footer-container">
+    <div class="footer-brand scroll-reveal">
+      <a href="index.html" class="logo footer-logo">
+        <div class="logo-icon" style="width:100px;height:100px;">
+          <img src="/asset/logo.png" alt="Vibe Clothing Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </a>
+      <p class="footer-brand-desc">Vibe Clothing Company isn't just a choice — it's a statement of quality,
+        adaptability, and responsibility. Here, your textile aspirations become our mission for excellence.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+          </svg></a>
+      </div>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-1">
+      <h4 class="footer-col-title">QUICK LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="services.html">Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-2">
+      <h4 class="footer-col-title">OTHER LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="clients.html">Clients</a></li>
+        <!-- <li><a href="shop.html">Shop</a></li>
+        <li><a href="faq.html">FAQ's</a></li> -->
+        <li><a href="enquiry.html">Enquiry</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col scroll-reveal delay-3">
+      <h4 class="footer-col-title">GET IN TOUCH</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-contact-list">
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <rect x="2" y="4" width="20" height="16" rx="2" stroke="#7CB342" stroke-width="1.5" />
+              <path d="M2 8 L12 14 L22 8" stroke="#7CB342" stroke-width="1.5" stroke-linecap="round" />
+            </svg></div>
+          <a href="mailto:enquiry@vibeclothingcompany.net" class="fci-link">enquiry@vibeclothingcompany.net</a>
+        </li>
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                stroke="#7CB342" stroke-width="1.5" />
+            </svg></div>
+          <div class="fci-phones"><span>IN: +91 97919 99998</span><span>UK: +44 7404447806</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fb-content">
+      <p class="fb-copyright">
+        © 2026 <span class="footer-brand-name">Vibe Clothing Company</span>. All Rights Reserved.
+      </p>
+      <div class="fb-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span class="fb-dot">•</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <span class="fb-dot">•</span>
+        <span class="fb-credit">Designed by <a href="https://futuremindstudio.in" target="_blank">Future Mind Studio</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    // Form submission handling
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData);
+      
+      // Validate at least one service is checked
+      const services = document.querySelectorAll('input[name="services"]:checked');
+      if (services.length === 0) {
+        alert('Please select at least one service.');
+        return;
+      }
+      
+      // Log form data (in real implementation, send to server)
+      console.log('Form submitted with data:', data);
+      alert('Thank you for your enquiry! We will get back to you within 24-48 hours.');
+      
+      // Reset form
+      this.reset();
+    });
+  </script>
+  <script src="main.js"></script>
+</body>
+
+</html>

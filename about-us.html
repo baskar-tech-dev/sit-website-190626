@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Vibe Clothing Company</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="/asset/logo-black.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ==========================================================================
+       ABOUT US STYLE REDESIGN (Forest Green & Charcoal Theme)
+       ========================================================================== */
+    .about-hero {
+      background-image: linear-gradient(180deg, rgba(7, 11, 8, 0.7) 0%, rgba(13, 21, 17, 0.85) 100%), url('asset/hero-3-about.png');
+    }
+
+    .about-intro-box {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(124, 179, 66, 0.15);
+      padding: clamp(25px, 5vw, 45px);
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-intro-text {
+      color: rgba(245, 245, 245, 0.85);
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.8;
+      margin-bottom: 24px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+    }
+
+    .about-intro-text:last-child {
+      margin-bottom: 0;
+      color: rgba(245, 245, 245, 0.7);
+      font-style: italic;
+    }
+
+    /* Client Reviews Testimonial Section */
+    .about-reviews-section {
+      padding: clamp(60px, 12vh, 100px) clamp(16px, 5vw, 20px);
+      background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-main) 100%);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(124, 179, 66, 0.1);
+    }
+
+    .reviews-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .reviews-title-wrap {
+      text-align: center;
+      margin-bottom: clamp(40px, 8vh, 60px);
+    }
+
+    .reviews-title-wrap h2 {
+      font-size: clamp(32px, 6vw, 48px);
+      font-weight: 700;
+      color: #F5F5F5;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .reviews-title-wrap h2 em {
+      color: #7CB342;
+      font-style: italic;
+    }
+
+    .slider-outer-wrap {
+      position: relative;
+      padding: 0;
+      margin: 0 auto;
+      display: block;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 1px solid rgba(124, 179, 66, 0.3);
+      background: rgba(13, 21, 17, 0.85);
+      color: #7CB342;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 1.5rem;
+      user-select: none;
+      z-index: 10;
+    }
+
+    .slider-arrow:hover {
+      background: #7CB342;
+      color: var(--bg-main);
+      box-shadow: 0 0 20px rgba(124, 179, 66, 0.4);
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    .prev-arrow {
+      left: -70px;
+    }
+
+    .next-arrow {
+      right: -70px;
+    }
+
+    @media (max-width: 1200px) {
+      .prev-arrow {
+        left: -20px;
+      }
+      .next-arrow {
+        right: -20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .slider-outer-wrap {
+        padding-bottom: 80px;
+      }
+
+      .slider-arrow {
+        top: auto;
+        bottom: 10px;
+        transform: none;
+      }
+
+      .slider-arrow:hover {
+        transform: scale(1.1);
+      }
+
+      .prev-arrow {
+        left: calc(50% - 60px);
+      }
+
+      .next-arrow {
+        right: calc(50% - 60px);
+      }
+    }
+
+    .reviews-viewport {
+      overflow: hidden;
+      width: 100%;
+      padding: 15px 5px;
+    }
+
+    .reviews-track {
+      display: flex;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      gap: 24px;
+    }
+
+    .review-card {
+      min-width: calc(100% - 0px);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(124, 179, 66, 0.15);
+      border-radius: 20px;
+      padding: clamp(20px, 5vw, 40px);
+      box-sizing: border-box;
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, border-color 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+    }
+
+    @media (min-width: 768px) {
+      .review-card {
+        min-width: calc(50% - 12px);
+      }
+    }
+
+    .review-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(124, 179, 66, 0.4);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .review-quote {
+      color: rgba(245, 245, 245, 0.9);
+      font-size: clamp(14px, 2vw, 16px);
+      line-height: 1.8;
+      font-style: italic;
+      font-weight: 300;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .review-quote::before {
+      content: '"';
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      color: rgba(124, 179, 66, 0.1);
+      position: absolute;
+      top: -40px;
+      left: -20px;
+    }
+
+    .review-meta {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .review-avatar-text {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(124, 179, 66, 0.15);
+      color: #7CB342;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border: 1px solid rgba(124, 179, 66, 0.3);
+      flex-shrink: 0;
+    }
+
+    .review-author-info h4 {
+      color: #F5F5F5;
+      font-size: 15px;
+      font-weight: 600;
+      margin: 0 0 3px 0;
+    }
+
+    .review-author-info p {
+      color: #7CB342;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+      font-weight: 500;
+    }
+
+    /* OUR TEAM SECTION */
+    .about-team-section {
+      padding: clamp(60px, 12vh, 100px) clamp(16px, 5vw, 20px);
+      background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .team-title-wrap {
+      text-align: center;
+      margin-bottom: clamp(45px, 8vh, 70px);
+    }
+
+    .team-title-wrap h2 {
+      font-size: clamp(34px, 7vw, 50px);
+      font-weight: 700;
+      color: #F5F5F5;
+      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 2px;
+    }
+
+    .team-title-wrap h2 em {
+      color: #7CB342;
+      font-style: italic;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      justify-content: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .team-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(124, 179, 66, 0.15);
+      border-radius: 24px;
+      padding: clamp(25px, 5vw, 40px);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(124, 179, 66, 0.45);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(124, 179, 66, 0.05);
+    }
+
+    .team-avatar-wrap {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 30px;
+      border-radius: 50%;
+      border: 2px dashed rgba(124, 179, 66, 0.3);
+      padding: 8px;
+      transition: transform 0.4s ease;
+      position: relative;
+    }
+
+    .team-card:hover .team-avatar-wrap {
+      transform: rotate(5deg) scale(1.05);
+      border-color: #7CB342;
+    }
+
+    .team-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(13, 21, 17, 0.8) 0%, rgba(124, 179, 66, 0.15) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid rgba(124, 179, 66, 0.2);
+    }
+
+    .team-avatar svg {
+      width: 90px;
+      height: 90px;
+      color: rgba(245, 245, 245, 0.8);
+      transition: color 0.3s ease;
+    }
+
+    .team-card:hover .team-avatar svg {
+      color: #7CB342;
+    }
+
+    .team-card h3 {
+      font-size: clamp(20px, 3.5vw, 24px);
+      color: #F5F5F5;
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .team-role {
+      font-size: 14px;
+      color: #7CB342;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .team-contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      border-top: 1px solid rgba(124, 179, 66, 0.12);
+      padding-top: 25px;
+    }
+
+    .team-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(245, 245, 245, 0.75);
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .team-contact-item:hover {
+      color: #7CB342;
+    }
+
+    .team-contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(124, 179, 66, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #7CB342;
+      flex-shrink: 0;
+      transition: background 0.3s ease;
+    }
+
+    .team-contact-item:hover .team-contact-icon {
+      background: rgba(124, 179, 66, 0.2);
+    }
+
+    .team-contact-icon svg {
+      width: 16px;
+      height: 16px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+    }
+
+    .team-contact-item span {
+      font-size: clamp(11px, 2.5vw, 14px);
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- ABOUT HERO SECTION -->
+  <section class="about-hero">
+    <div class="about-hero-content">
+     
+      <h1 class="scroll-reveal">Weaving Narrative With<br><em>Dedication & Expertise</em></h1>
+      
+      <div class="about-intro-box scroll-reveal delay-1">
+        <p class="about-intro-text">
+          Every thread tells a story and at Vibe Clothing Company, we weave this narrative with dedication and expertise, producing fabrics that are not only beautiful but built to last.
+        </p>
+        <p class="about-intro-text">
+          Our goal is to achieve sustainable growth by adhering to ethical business practices, creating and delivering value to our customers, community, and society at large.
+        </p>
+        <p class="about-intro-text">
+          Please take a moment to explore feedback and reviews from our satisfied customers.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENT REVIEWS SECTION -->
+  <section class="about-reviews-section">
+    <div class="reviews-container">
+      <div class="reviews-title-wrap scroll-reveal">
+        <h2>Client <em>Reviews</em></h2>
+      </div>
+
+      <div class="slider-outer-wrap scroll-reveal delay-1">
+        <button class="slider-arrow prev-arrow" id="prevReview" aria-label="Previous Review">&#8249;</button>
+        
+        <div class="reviews-viewport">
+          <div class="reviews-track" id="reviewsTrack">
+            
+            <!-- Review 1: Gautham -->
+            <div class="review-card">
+              <p class="review-quote">
+                Vibe Clothing Company has exceeded all our expectations in quality and reliability. Their concept-to-creation philosophy brings absolute perfection to our apparel lines.
+              </p>
+              <div class="review-meta">
+                <div class="review-avatar-text">G</div>
+                <div class="review-author-info">
+                  <h4>Gautham</h4>
+                  <p>Company & Customer Name</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 2: Sarah Jenkins -->
+            <div class="review-card">
+              <p class="review-quote">
+                The fabrics are built to last and look absolutely spectacular. Their team works tirelessly with an attention to detail that is highly commendable.
+              </p>
+              <div class="review-meta">
+                <div class="review-avatar-text">S</div>
+                <div class="review-author-info">
+                  <h4>Sarah Jenkins</h4>
+                  <p>TrendLine Fashion UK</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 3: David Miller -->
+            <div class="review-card">
+              <p class="review-quote">
+                Outstanding ethical standards and superb sustainable fabrics. A truly responsible garment partner for our environmental retail network.
+              </p>
+              <div class="review-meta">
+                <div class="review-avatar-text">D</div>
+                <div class="review-author-info">
+                  <h4>David Miller</h4>
+                  <p>EcoWear Retail Europe</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Review 4: Priya Sharma -->
+            <div class="review-card">
+              <p class="review-quote">
+                Excellent response times, exceptional craftsmanship, and swift execution. They delivered premium textile assets that our customers love!
+              </p>
+              <div class="review-meta">
+                <div class="review-avatar-text">P</div>
+                <div class="review-author-info">
+                  <h4>Priya Sharma</h4>
+                  <p>Elite Apparel India</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <button class="slider-arrow next-arrow" id="nextReview" aria-label="Next Review">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR TEAM SECTION -->
+  <section class="about-team-section">
+    <div class="team-container">
+      <div class="team-title-wrap scroll-reveal">
+        <h2>Our <em>Team</em></h2>
+      </div>
+
+      <div class="team-grid scroll-reveal delay-1">
+        
+        <!-- Team Member 1: Gowtham -->
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="team-avatar">
+              <!-- Safety Worker SVG Silhouette -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+                <path d="M7 6.5s.5-1.5 2-1.5h6s1.5 0 2 1.5M12 2v3M9.5 3h5" stroke-width="1" />
+              </svg>
+            </div>
+          </div>
+          <h3>Gowtham</h3>
+          <div class="team-role">Head of Operations</div>
+          
+          <ul class="team-contact-list">
+            <li>
+              <a href="mailto:Gowtham@vibeclothingcompany.net" class="team-contact-item">
+                <div class="team-contact-icon">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M2 8l10 6 10-6" /></svg>
+                </div>
+                <span>Gowtham@vibeclothingcompany.net</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+919791999998" class="team-contact-item">
+                <div class="team-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                </div>
+                <span>+91 97919 99998</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Team Member 2: Viv Annadurai -->
+        <div class="team-card">
+          <div class="team-avatar-wrap">
+            <div class="team-avatar">
+              <!-- Business Corporate Manager SVG Silhouette -->
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+                <path d="M12 11v3M9.5 15.5l2.5-1.5 2.5 1.5M10.5 12h3" stroke-width="1" />
+              </svg>
+            </div>
+          </div>
+          <h3>Viv Annadurai</h3>
+          <div class="team-role">Head of Sales & Marketing (UK & Europe)</div>
+          
+          <ul class="team-contact-list">
+            <li>
+              <a href="mailto:Viv@vibeclothingcompany.net" class="team-contact-item">
+                <div class="team-contact-icon">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M2 8l10 6 10-6" /></svg>
+                </div>
+                <span>Viv@vibeclothingcompany.net</span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+447404447806" class="team-contact-item">
+                <div class="team-contact-icon">
+                  <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                </div>
+                <span>+44 7404447806</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATIC INTEGRATED FOOTER -->
+  <footer class="footer" id="footer">
+  <div class="footer-top-line"></div>
+  <div class="footer-container">
+    <div class="footer-brand scroll-reveal">
+      <a href="index.html" class="logo footer-logo">
+        <div class="logo-icon" style="width:100px;height:100px;">
+          <img src="/asset/logo.png" alt="Vibe Clothing Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </a>
+      <p class="footer-brand-desc">Vibe Clothing Company isn't just a choice — it's a statement of quality,
+        adaptability, and responsibility. Here, your textile aspirations become our mission for excellence.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+          </svg></a>
+      </div>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-1">
+      <h4 class="footer-col-title">QUICK LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="services.html">Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-2">
+      <h4 class="footer-col-title">OTHER LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="clients.html">Clients</a></li>
+        <!-- <li><a href="shop.html">Shop</a></li>
+        <li><a href="faq.html">FAQ's</a></li> -->
+        <li><a href="enquiry.html">Enquiry</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col scroll-reveal delay-3">
+      <h4 class="footer-col-title">GET IN TOUCH</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-contact-list">
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <rect x="2" y="4" width="20" height="16" rx="2" stroke="#7CB342" stroke-width="1.5" />
+              <path d="M2 8 L12 14 L22 8" stroke="#7CB342" stroke-width="1.5" stroke-linecap="round" />
+            </svg></div>
+          <a href="mailto:enquiry@vibeclothingcompany.net" class="fci-link">enquiry@vibeclothingcompany.net</a>
+        </li>
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                stroke="#7CB342" stroke-width="1.5" />
+            </svg></div>
+          <div class="fci-phones"><span>IN: +91 97919 99998</span><span>UK: +44 7404447806</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fb-content">
+      <p class="fb-copyright">
+        © 2026 <span class="footer-brand-name">Vibe Clothing Company</span>. All Rights Reserved.
+      </p>
+      <div class="fb-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span class="fb-dot">•</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <span class="fb-dot">•</span>
+        <span class="fb-credit">Designed by <a href="https://futuremindstudio.in" target="_blank">Future Mind Studio</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Review Testimonial Slider Functionality
+    const track = document.getElementById('reviewsTrack');
+    const prevBtn = document.getElementById('prevReview');
+    const nextBtn = document.getElementById('nextReview');
+    
+    let currentIndex = 0;
+    
+    function getCardWidth() {
+      const cards = document.querySelectorAll('.review-card');
+      if (cards.length === 0) return 0;
+      return cards[0].getBoundingClientRect().width + 24; // Card width + gap
+    }
+    
+    function getMaxIndex() {
+      const cards = document.querySelectorAll('.review-card');
+      const isMobile = window.innerWidth < 768;
+      return isMobile ? cards.length - 1 : cards.length - 2;
+    }
+
+    function updateSlider() {
+      const width = getCardWidth();
+      track.style.transform = `translateX(-${currentIndex * width}px)`;
+    }
+    
+    nextBtn.addEventListener('click', () => {
+      const maxIndex = getMaxIndex();
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+      } else {
+        currentIndex = 0; // Loop back
+      }
+      updateSlider();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = getMaxIndex(); // Loop to end
+      }
+      updateSlider();
+    });
+    
+    window.addEventListener('resize', () => {
+      // Reset index to prevent alignment issues
+      currentIndex = 0;
+      updateSlider();
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shop - Vibe Clothing Company</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="/asset/logo-black.png" type="image/x-icon">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap"
+    rel="stylesheet">
+  <style>
+    .shop-hero {
+      background-image: linear-gradient(180deg, rgba(7, 11, 8, 0.7) 0%, rgba(13, 21, 17, 0.85) 100%), url('asset/out-expertise.png');
+    }
+
+    .shop-section {
+      min-height: auto;
+      padding: clamp(60px, 10vh, 100px) clamp(16px, 5vw, 20px);
+      background: linear-gradient(135deg, var(--bg-main) 0%, var(--bg-dark) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shop-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .shop-header .section-tag {
+      color: #7CB342;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .shop-header h1 {
+      font-size: clamp(28px, 8vw, 48px);
+      font-weight: 700;
+      color: #F5F5F5;
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .shop-header h1 em {
+      font-style: italic;
+      color: #7CB342;
+    }
+
+    .shop-header p {
+      color: rgba(245, 245, 245, 0.7);
+      font-size: clamp(14px, 2vw, 16px);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: center;
+      gap: clamp(10px, 2vw, 15px);
+      margin-bottom: 50px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .filter-btn {
+      padding: clamp(8px, 1.5vw, 10px) clamp(18px, 3vw, 25px);
+      border: 1px solid rgba(124, 179, 66, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+      color: #F5F5F5;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: clamp(12px, 1.5vw, 14px);
+      font-weight: 500;
+      min-height: 44px;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: rgba(124, 179, 66, 0.2);
+      border-color: #7CB342;
+      color: #7CB342;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: clamp(15px, 3vw, 30px);
+      margin-bottom: 60px;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(124, 179, 66, 0.2);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    .product-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(124, 179, 66, 0.5);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(124, 179, 66, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, rgba(124, 179, 66, 0.1), rgba(124, 179, 66, 0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 80px;
+      border-bottom: 1px solid rgba(124, 179, 66, 0.2);
+    }
+
+    .product-info {
+      padding: 25px;
+    }
+
+    .product-category {
+      color: #7CB342;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .product-name {
+      font-size: clamp(16px, 3vw, 18px);
+      font-weight: 600;
+      color: #F5F5F5;
+      margin-bottom: 10px;
+    }
+
+    .product-desc {
+      color: rgba(245, 245, 245, 0.6);
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 15px;
+      border-top: 1px solid rgba(124, 179, 66, 0.1);
+    }
+
+    .product-price {
+      color: #7CB342;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .product-btn {
+      padding: 8px 16px;
+      background: rgba(124, 179, 66, 0.2);
+      border: 1px solid #7CB342;
+      color: #7CB342;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      min-height: 44px;
+      min-width: 100px;
+    }
+
+    .product-btn:hover {
+      background: #7CB342;
+      color: var(--bg-main);
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: clamp(30px, 8vh, 60px) clamp(20px, 5vw, 30px);
+      background: rgba(124, 179, 66, 0.1);
+      border-radius: 16px;
+      max-width: 1000px;
+      margin: 0 auto;
+      border: 1px solid rgba(124, 179, 66, 0.2);
+    }
+
+    .cta-section h2 {
+      font-size: clamp(24px, 6vw, 36px);
+      font-weight: 700;
+      color: #F5F5F5;
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .cta-section h2 em {
+      font-style: italic;
+      color: #7CB342;
+    }
+
+    .cta-section p {
+      color: rgba(245, 245, 245, 0.7);
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      padding: clamp(12px, 2vw, 14px) clamp(30px, 5vw, 40px);
+      background: #7CB342;
+      color: var(--bg-main);
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      min-height: 44px;
+    }
+
+    .btn-primary:hover {
+      background: #5a8a2d;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      padding: clamp(12px, 2vw, 14px) clamp(30px, 5vw, 40px);
+      border: 1px solid #7CB342;
+      background: transparent;
+      color: #7CB342;
+      border-radius: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 13px;
+      min-height: 44px;
+    }
+
+    @media (max-width: 768px) {
+      .filter-controls {
+        gap: clamp(8px, 2vw, 12px);
+      }
+      
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .cta-btns {
+        flex-direction: column;
+      }
+      
+      .btn-primary,
+      .btn-outline {
+        width: 100%;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .shop-section {
+        padding: clamp(20px, 5vh, 40px) clamp(12px, 4vw, 16px);
+      }
+      
+      .shop-header {
+        margin-bottom: clamp(20px, 4vh, 40px);
+      }
+      
+      .filter-controls {
+        flex-direction: column;
+        gap: clamp(8px, 2vw, 12px);
+      }
+      
+      .filter-btn {
+        width: 100%;
+      }
+      
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-outline:hover {
+      background: rgba(124, 179, 66, 0.1);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <!-- SHOP HERO SECTION -->
+  <section class="shop-hero">
+    <div class="shop-hero-content">
+      <span class="section-tag">SHOP</span>
+      <h1>Premium Apparel <br><em>Collections</em></h1>
+      <p>Explore our curated selection of high-quality garments manufactured with precision, innovation, and sustainable practices.</p>
+    </div>
+  </section>
+
+  <!-- SHOP SECTION -->
+  <section class="shop-section">
+    <div class="container">
+
+      <div class="filter-controls">
+        <button class="filter-btn active">All Products</button>
+        <button class="filter-btn">Men's Wear</button>
+        <button class="filter-btn">Women's Wear</button>
+        <button class="filter-btn">Sports Wear</button>
+        <button class="filter-btn">Casual Wear</button>
+        <button class="filter-btn">Premium Collection</button>
+      </div>
+
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">👕</div>
+          <div class="product-info">
+            <div class="product-category">Men's Wear</div>
+            <div class="product-name">Classic Cotton T-Shirt</div>
+            <p class="product-desc">Premium quality 100% organic cotton t-shirt with superior comfort and durability.</p>
+            <div class="product-footer">
+              <span class="product-price">$24.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">👔</div>
+          <div class="product-info">
+            <div class="product-category">Corporate Wear</div>
+            <div class="product-name">Formal Business Shirt</div>
+            <p class="product-desc">Elegant formal shirt perfect for professional environments and corporate events.</p>
+            <div class="product-footer">
+              <span class="product-price">$49.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">👗</div>
+          <div class="product-info">
+            <div class="product-category">Women's Wear</div>
+            <div class="product-name">Elegant Summer Dress</div>
+            <p class="product-desc">Stylish and comfortable summer dress with breathable fabric and modern design.</p>
+            <div class="product-footer">
+              <span class="product-price">$39.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🎽</div>
+          <div class="product-info">
+            <div class="product-category">Sports Wear</div>
+            <div class="product-name">Performance Sport Jersey</div>
+            <p class="product-desc">High-performance sports jersey with moisture-wicking technology and superior fit.</p>
+            <div class="product-footer">
+              <span class="product-price">$34.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">👖</div>
+          <div class="product-info">
+            <div class="product-category">Casual Wear</div>
+            <div class="product-name">Premium Denim Jeans</div>
+            <p class="product-desc">Classic denim jeans with premium craftsmanship and timeless style appeal.</p>
+            <div class="product-footer">
+              <span class="product-price">$59.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧥</div>
+          <div class="product-info">
+            <div class="product-category">Premium Collection</div>
+            <div class="product-name">Luxury Winter Jacket</div>
+            <p class="product-desc">Premium winter jacket with sustainable materials and luxurious comfort.</p>
+            <div class="product-footer">
+              <span class="product-price">$129.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧢</div>
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <div class="product-name">Premium Cotton Cap</div>
+            <p class="product-desc">Stylish cotton cap with adjustable fit and premium finishing.</p>
+            <div class="product-footer">
+              <span class="product-price">$19.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">🧣</div>
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <div class="product-name">Silk Scarf Collection</div>
+            <p class="product-desc">Elegant silk scarf with natural materials and premium quality weave.</p>
+            <div class="product-footer">
+              <span class="product-price">$44.99</span>
+              <button class="product-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA SECTION -->
+      <div class="cta-section">
+        <h2>Custom Orders & <em>Bulk Inquiries</em></h2>
+        <p>Looking for customized apparel or bulk manufacturing? Our private label and custom production services are tailored to meet your unique needs. Connect with our team for exclusive pricing and solutions.</p>
+        <div class="cta-btns">
+          <a href="enquiry.html" class="btn-primary">Request Custom Quote</a>
+          <a href="index.html#footer" class="btn-outline">Contact Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer" id="footer">
+  <div class="footer-top-line"></div>
+  <div class="footer-container">
+    <div class="footer-brand scroll-reveal">
+      <a href="index.html" class="logo footer-logo">
+        <div class="logo-icon" style="width:100px;height:100px;">
+          <img src="/asset/logo.png" alt="Vibe Clothing Logo" style="width: 100%; height: 100%; object-fit: contain;">
+        </div>
+      </a>
+      <p class="footer-brand-desc">Vibe Clothing Company isn't just a choice — it's a statement of quality,
+        adaptability, and responsibility. Here, your textile aspirations become our mission for excellence.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg></a>
+        <a href="#" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" width="18" height="18"
+            fill="currentColor">
+            <path
+              d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+          </svg></a>
+      </div>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-1">
+      <h4 class="footer-col-title">QUICK LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about-us.html">About Us</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="services.html">Services</a></li>
+      </ul>
+    </div>
+    <div class="footer-links-col scroll-reveal delay-2">
+      <h4 class="footer-col-title">OTHER LINKS</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-links">
+        <li><a href="clients.html">Clients</a></li>
+        <!-- <li><a href="shop.html">Shop</a></li>
+        <li><a href="faq.html">FAQ's</a></li> -->
+        <li><a href="enquiry.html">Enquiry</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact-col scroll-reveal delay-3">
+      <h4 class="footer-col-title">GET IN TOUCH</h4>
+      <div class="footer-col-line"></div>
+      <ul class="footer-contact-list">
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <rect x="2" y="4" width="20" height="16" rx="2" stroke="#7CB342" stroke-width="1.5" />
+              <path d="M2 8 L12 14 L22 8" stroke="#7CB342" stroke-width="1.5" stroke-linecap="round" />
+            </svg></div>
+          <a href="mailto:enquiry@vibeclothingcompany.net" class="fci-link">enquiry@vibeclothingcompany.net</a>
+        </li>
+        <li>
+          <div class="fci-icon"><svg viewBox="0 0 24 24" fill="none" width="20" height="20">
+              <path
+                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                stroke="#7CB342" stroke-width="1.5" />
+            </svg></div>
+          <div class="fci-phones"><span>IN: +91 97919 99998</span><span>UK: +44 7404447806</span></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="fb-content">
+      <p class="fb-copyright">
+        © 2026 <span class="footer-brand-name">Vibe Clothing Company</span>. All Rights Reserved.
+      </p>
+      <div class="fb-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span class="fb-dot">•</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+        <span class="fb-dot">•</span>
+        <span class="fb-credit">Designed by <a href="https://futuremindstudio.in" target="_blank">Future Mind Studio</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
